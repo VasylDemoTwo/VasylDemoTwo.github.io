@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Favicon Rendering Test — Single SVG Icon</title>
+<meta name="description" content="A small public test page used to observe how Google Search renders a site icon when the page declares exactly one vector favicon.">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<style>
+  :root { --fg:#1a1a1a; --muted:#565656; --bg:#fff; --rule:#e4e4e4; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --fg:#ececec; --muted:#a6a6a6; --bg:#17181a; --rule:#303236; }
+  }
+  body { background: var(--bg); color: var(--fg); margin: 0;
+         font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  main { max-width: 42rem; margin: 0 auto; padding: 3rem 16px 4rem; }
+  h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 .5rem; }
+  h2 { font-size: 1.1rem; margin: 2rem 0 .5rem; }
+  p { margin: 0 0 1rem; }
+  .lead { color: var(--muted); }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 2rem 0; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; }
+  footer { color: var(--muted); font-size: .875rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Favicon rendering test: a single vector icon</h1>
+  <p class="lead">This page exists to observe how a search engine picks up and renders a website icon when the
+     document declares exactly one icon file, at a large resolution, instead of the usual ladder of small sizes.</p>
+
+  <h2>What this page declares</h2>
+  <p>The document head contains a single icon reference, <code>&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;</code>,
+     pointing at a scalable vector file rather than a bitmap, so it carries no fixed resolution at all. There is
+     no <code>.ico</code> file, no <code>apple-touch-icon</code> and no bitmap variant.
+     The icon URL is stable and will not change between updates of this page.</p>
+
+  <h2>Why the setup matters</h2>
+  <p>Most websites publish a whole family of icon files: a multi-frame <code>.ico</code>, a couple of small PNGs
+     for browser tabs, and a larger image for mobile home screens. When several candidates are offered, it is not
+     documented which one a search engine will store and later display next to the site name in its results.
+     Offering exactly one file removes that ambiguity: whatever appears in the results can only have come from
+     this single source.</p>
+
+  <h2>What is being measured</h2>
+  <p>Once this page is indexed, the icon shown next to it in search results is inspected in the browser: its
+     intrinsic pixel dimensions, the size it is displayed at, and the pixel density of the screen. Those three
+     numbers show whether the icon is rendered at its native resolution or stretched, and they can be compared
+     against pages that publish the conventional set of small icon files.</p>
+
+  <h2>Notes</h2>
+  <p>This is a technical test page with no commercial purpose. It is not affiliated with any online shop, it sells
+     nothing and it collects no data from visitors. The artwork in the icon is a simple lotus mark on a round grey
+     background, chosen because its thin curved lines make loss of detail easy to see at small sizes.</p>
+
+  <hr>
+  <footer>Static test page. Last updated October 2026.</footer>
+</main>
+</body>
+</html>
